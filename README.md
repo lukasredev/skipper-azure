@@ -1,4 +1,7 @@
-# [<img title="skipper-s3 - S3 adapter for Skipper" src="http://i.imgur.com/P6gptnI.png" width="200px" alt="skipper emblem - face of a ship's captain"/>](https://github.com/balderdashy/skipper-s3) Azure Blob Adapter
+# [<img title="skipper-azure - Azure Storage adapter for Skipper" src="http://i.imgur.com/P6gptnI.png" width="200px" alt="skipper emblem - face of a ship's captain"/>](https://github.com/lukasreichart/skipper-azure) Azure Blob Adapter
+
+[![NPM version](https://badge.fury.io/js/skipper-azure.png)](http://badge.fury.io/js/skipper-azure) &nbsp; &nbsp;
+
 
 Azure adapter for receiving [upstreams](https://github.com/balderdashy/skipper#what-are-upstreams). Particularly useful for handling streaming multipart file uploads from the [Skipper](https://github.com/balderdashy/skipper) body parser.
 
