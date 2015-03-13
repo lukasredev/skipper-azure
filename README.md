@@ -34,6 +34,10 @@ req.file('avatar')
 
 For more detailed usage information and a full list of available options, see the Skipper docs, especially the section on "[https://github.com/balderdashy/skipper#uploading-files-to-s3](Uploading to S3)".
 
+## Questions & Contributions
+
+If you have any questions on how to use the adapter, feel free to ask them on [stackoverflow](http://stackoverflow.com) using the [skipper-azure](http://stackoverflow.com/questions/tagged/skipper-azure) tag.
+If you want to contribute something to the project, feel free to create a pull request or open an issue.
 
 ## License
 
