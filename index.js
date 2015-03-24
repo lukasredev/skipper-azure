@@ -127,7 +127,7 @@ module.exports = function SkipperAzure( globalOptions ) {
       };
 
       var uploader = blobService.createBlockBlobFromStream( options.container,
-        newFile.fd, newFile, newFile._readableState.length, uploadOptions, function( err, result, response ) {
+        newFile.fd, newFile, newFile.byteCount, uploadOptions, function( err, result, response ) {
           if( err ) {
             console.log( ('Receiver: Error writing ' + newFile.filename + ' :: Cancelling upload and cleaning up already-written bytes ... ' ).red );
             receiver.emit( 'error', err );
