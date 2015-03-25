@@ -120,8 +120,14 @@ module.exports = function SkipperAzure( globalOptions ) {
         contentType: headers['content-type']
       };
 
+      // TODO: only used for the waterline-adapter-tests, because they do not set the byteCount attribute
+      // checkout the issue on: https://github.com/lukasreichart/skipper-azure/pull/2
+      if( !newFile.byteCount ){
+        newFile.byteCount = newFile._readableState.length;
+      }
+
       var uploader = blobService.createBlockBlobFromStream( options.container,
-        newFile.fd, newFile, newFile._readableState.length, uploadOptions, function( err, result, response ) {
+        newFile.fd, newFile, newFile.byteCount, uploadOptions, function( err, result, response ) {
           if( err ) {
             console.log( ('Receiver: Error writing ' + newFile.filename + ' :: Cancelling upload and cleaning up already-written bytes ... ' ).red );
             receiver.emit( 'error', err );
