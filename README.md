@@ -39,6 +39,17 @@ For more detailed usage information and a full list of available options, see th
 If you have any questions on how to use the adapter, feel free to ask them on [stackoverflow](http://stackoverflow.com) using the [skipper-azure](http://stackoverflow.com/questions/tagged/skipper-azure) tag.
 If you want to contribute something to the project, feel free to create a pull request or open an issue.
 
+To run the tests:
+
+```sh
+git clone git@github.com:lukasreichart/skipper-azure.git
+cd skipper-azure
+npm install
+KEY= your_azure_storage_account SECRET=your_azure_access_secret CONTAINER=your_azure_bucket npm test
+```
+
+Please don't check in your azure credentials :)
+
 ## License
 
 **[MIT](./LICENSE)**
