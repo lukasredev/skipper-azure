@@ -8,7 +8,7 @@
 
 var path = require('path');
 var Writable = require('stream').Writable;
-var concat = require('concat-stream');
+var Transform = require('stream').Transform;
 var azure = require( 'azure-storage');
 var _ = require( 'lodash' );
 var mime = require( 'mime' );
@@ -24,15 +24,21 @@ module.exports = function SkipperAzure( globalOptions ) {
     read: function( fd, cb ) {
       var prefix = fd;
 
-      var res = blobService.createReadStream( globalOptions.container, prefix, function( err ) {
+      // Build a noop transform stream that will pump the Azure output through
+      var __transform__ = new Transform();
+      __transform__._transform = function (chunk, encoding, callback) {
+        return cb(null, chunk);
+      };
+
+      blobService.getBlobToStream( globalOptions.container, prefix, __transform__, function( err, result, response ) {
         if ( err ) {
           cb( err );
         }
+
+        __transform__.emit( 'finish', err, result.blob)
       });
 
-      res.pipe(concat(function (data) {
-        return cb(null, data);
-      }));
+      return __transform__
     },
 
     rm: function( fd, cb ) {
