@@ -134,7 +134,6 @@ module.exports = function SkipperAzure( globalOptions ) {
             receiver.emit( 'error', err );
             return;
           }
-            bytesRemaining -= body.size;
 
             newFile.extra = response;
           newFile.size = new Number( newFile.size );
