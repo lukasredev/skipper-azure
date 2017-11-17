@@ -63,7 +63,7 @@ module.exports = function SkipperAzure( globalOptions ) {
             return cb( err );
           }
 
-          var data = _.pluck( result.entries, 'name');
+          var data = _.map( result.entries, 'name');
           data = _.map(data, function snipPathPrefixes (thisPath) {
             thisPath = thisPath.replace(/^.*[\/]([^\/]*)$/, '$1');
 
@@ -93,6 +93,7 @@ module.exports = function SkipperAzure( globalOptions ) {
 
     options = options || {};
     options = _.defaults( options, globalOptions );
+    var bytesRemaining = options.maxBytes;
 
     var receiver = Writable({
       objectMode: true
@@ -133,8 +134,9 @@ module.exports = function SkipperAzure( globalOptions ) {
             receiver.emit( 'error', err );
             return;
           }
+            bytesRemaining -= body.size;
 
-          newFile.extra = response;
+            newFile.extra = response;
           newFile.size = new Number( newFile.size );
 
           var endedAt = new Date();
